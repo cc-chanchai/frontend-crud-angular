@@ -1,1 +1,54 @@
-<p>detail works!</p>
+<div style="width: 400px; margin:auto">
+    <div *ngIf="currentTutorial" class="edit-form">
+        <h4>Edit Tutorial</h4>
+        <form>
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input 
+                    type="text"
+                    id="title"
+                    class="form-control"
+                    [(ngModel)]="currentTutorial.title"
+                    name="title">
+            </div>
+            <div class="form-group">
+                <label for="description">Description</label>
+                <input 
+                    type="text"
+                    name="description"
+                    id="description"
+                    class="form-control"
+                    [(ngModel)]="currentTutorial.description">
+            </div>
+
+            <div class="form-group">
+                <label><strong>Status: </strong></label>
+                {{ currentTutorial.published ? "Published" : "Pending" }}
+            </div>
+        </form>
+        <button 
+        class="btn btn-primary mr-2"
+        (click)="updatePublished(!currentTutorial.published)"
+    >
+        {{ currentTutorial.published ? "Pending" : "Published"}}
+    </button>
+
+    <button
+        class="btn btn-danger mr-2"
+        (click)="deleteTutorial()"
+    >
+        Delete
+    </button>
+
+    <button 
+        class="btn btn-success"
+        type="submit"
+        (click)="updateTutorial()">
+        Update
+    </button>
+    <p>{{message}}</p>
+    </div>
+    <div *ngIf="!currentTutorial">
+        <p>Cannot access this Tutorial...</p>
+    </div>
+</div>

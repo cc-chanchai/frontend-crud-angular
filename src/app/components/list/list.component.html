@@ -1,1 +1,59 @@
-<p>list works!</p>
+<div class="list row">
+    <div class="col-md-8">
+        <div class="input-group mb-3">
+            <input 
+                type="text"
+                class="form-control"
+                placeholder="Search by Title"
+                [(ngModel)]="title"
+                (ngModelChange)="searchByTitle()"
+            />
+            <div class="input-group-append">
+                <button
+                    class="btn btn-info btn-outlined-secondary" disabled
+                    type="button"
+                >
+                    Search
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 mt-4">
+        <h4>Tutorial List</h4>
+        <ul class="list-group">
+            <li
+                class="list-group-item"
+                *ngFor="let tutorial of tutorials;let index = index"
+                [class.acticve]="index == currentIndex"
+                (click)="setActiveTutorial(tutorial, index)">
+                {{ tutorial.title }}
+            </li>
+        </ul>
+    
+        <button class="btn btn-sm btn-danger mt-2" (click)="removeAll()">Delete All</button>
+    </div>
+    <div class="col-md-6 mt-5">
+        <div *ngIf="currentTutorial">
+            <h4>Tutorial</h4>
+            <div>
+                <label><strong>Title : </strong></label>
+                {{ currentTutorial.title }}
+            </div>
+            <div>
+                <label><strong>Description : </strong></label>
+                {{ currentTutorial.description }}
+            </div>
+            <div>
+                <label><strong>Status : </strong></label>
+                {{ currentTutorial.published ? "Published" : "Pending"}}
+            </div>
+        
+            <a class="badge badge-warning" routerLink="/detail/{{currentTutorial.id}}">
+                Edit
+            </a>
+        </div>
+        <div *ngIf="!currentTutorial">
+            <p>Please click on a tutorials...</p>
+        </div>
+    </div>
+</div>

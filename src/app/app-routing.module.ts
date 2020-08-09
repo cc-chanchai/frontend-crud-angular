@@ -6,9 +6,9 @@ import { ListComponent } from './components/list/list.component';
 
 
 const routes: Routes = [
-  { path: '', redirectTo: 'tutorails', pathMatch: 'full' },
+  { path: '', redirectTo: 'list', pathMatch: 'full' },
   { path: 'list', component: ListComponent },
-  { path: 'detial/:id', component: DetailComponent },
+  { path: 'detail/:id', component: DetailComponent },
   { path: 'add', component: AddComponent },
 
 ];
